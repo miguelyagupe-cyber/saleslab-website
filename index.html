@@ -901,7 +901,7 @@
           <li class="locked">Chatbot com IA</li>
         </ul>
         <div class="pricing-annual">€566/ano — poupa 20%</div>
-        <a href="https://sales-lab-lovat.vercel.app" onclick="window.location='https://sales-lab-lovat.vercel.app'" class="pricing-cta" style="cursor:pointer">Subscrever Starter →</a>
+        <a href="javascript:void(0)" onclick="startCheckout('price_1TKVfuF38ciAxkPHmKzccL0h')" class="pricing-cta">Subscrever →</a>
       </div>
 
       <!-- PRO -->
@@ -1098,6 +1098,7 @@ async function startCheckout(priceId) {
     const res = await fetch("https://web-production-74559.up.railway.app/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      mode: "cors",
       body: JSON.stringify({ price_id: priceId }),
     });
     const data = await res.json();
