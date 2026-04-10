@@ -901,7 +901,7 @@
           <li class="locked">Chatbot com IA</li>
         </ul>
         <div class="pricing-annual">€566/ano — poupa 20%</div>
-        <a href="mailto:saleslab@gmail.com?subject=Plano Starter" class="pricing-cta">Subscrever</a>
+        <a href="https://sales-lab-lovat.vercel.app" onclick="window.location='https://sales-lab-lovat.vercel.app'" class="pricing-cta" style="cursor:pointer">Subscrever Starter →</a>
       </div>
 
       <!-- PRO -->
@@ -919,7 +919,7 @@
           <li class="locked">Chatbot com IA</li>
         </ul>
         <div class="pricing-annual">€1.046/ano — poupa 20%</div>
-        <a href="mailto:saleslab@gmail.com?subject=Plano Pro" class="pricing-cta primary">Subscrever</a>
+        <a href="javascript:void(0)" onclick="startCheckout('price_1TKVgYF38ciAxkPHKyU1Otxh')" class="pricing-cta primary">Subscrever →</a>
       </div>
 
       <!-- TEAM -->
@@ -936,7 +936,7 @@
           <li>Múltiplos utilizadores</li>
         </ul>
         <div class="pricing-annual">€1.910/ano — poupa 20%</div>
-        <a href="mailto:saleslab@gmail.com?subject=Plano Team" class="pricing-cta">Subscrever</a>
+        <a href="javascript:void(0)" onclick="startCheckout('price_1TKVh6F38ciAxkPHSwZY0xDG')" class="pricing-cta">Subscrever →</a>
       </div>
 
     </div>
@@ -1020,7 +1020,7 @@
         Começar grátis
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="mailto:saleslab@gmail.com" class="btn-ghost">Falar com a equipa</a>
+      <a href="mailto:geralsaleslab@gmail.com" class="btn-ghost">Falar com a equipa</a>
     </div>
   </div>
 </section>
@@ -1045,14 +1045,14 @@
       <h4>Empresa</h4>
       <ul>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="mailto:saleslab@gmail.com">Contacto</a></li>
-        <li><a href="mailto:saleslab@gmail.com?subject=Plano Pro">Subscrições</a></li>
+        <li><a href="mailto:geralsaleslab@gmail.com">Contacto</a></li>
+        <li><a href="mailto:geralsaleslab@gmail.com?subject=Plano Pro">Subscrições</a></li>
       </ul>
     </div>
     <div class="footer-links">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="mailto:saleslab@gmail.com">saleslab@gmail.com</a></li>
+        <li><a href="mailto:geralsaleslab@gmail.com">geralsaleslab@gmail.com</a></li>
       </ul>
     </div>
   </div>
@@ -1091,6 +1091,22 @@
     document.querySelector('nav').style.padding =
       window.scrollY > 60 ? '12px 48px' : '20px 48px';
   });
+</script>
+<script>
+async function startCheckout(priceId) {
+  try {
+    const res = await fetch("https://web-production-74559.up.railway.app/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ price_id: priceId }),
+    });
+    const data = await res.json();
+    if (data.url) window.location.href = data.url;
+    else alert("Erro ao iniciar pagamento. Tente novamente.");
+  } catch(e) {
+    alert("Erro ao iniciar pagamento. Tente novamente.");
+  }
+}
 </script>
 </body>
 </html>
