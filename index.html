@@ -1097,7 +1097,7 @@ async function startCheckout(priceId) {
   try {
     const res = await fetch("https://web-production-74559.up.railway.app/create-checkout-session", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Origin": "https://www.saleslab.cc" },
       mode: "cors",
       body: JSON.stringify({ price_id: priceId }),
     });
